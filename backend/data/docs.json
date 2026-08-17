@@ -1,0 +1,20 @@
+[
+  {
+    "id": "doc-1",
+    "title": "Child Benefits Policy",
+    "url": "https://example.gov/policies/child-benefits",
+    "text": "Citizens with children under 18 may be eligible for child benefits if they meet income thresholds. Applications require proof of residency, birth certificates, and income statements. The benefit amount depends on number of children and income band."
+  },
+  {
+    "id": "doc-2",
+    "title": "Unemployment Support Guide",
+    "url": "https://example.gov/policies/unemployment-support",
+    "text": "Unemployment support provides temporary income for eligible individuals who have lost a job. Eligibility typically requires a minimum number of contributed months and active job-search. Supporting documents include termination letter, ID, and bank information."
+  },
+  {
+    "id": "doc-3",
+    "title": "Healthcare Subsidy Overview",
+    "url": "https://example.gov/policies/healthcare-subsidy",
+    "text": "Healthcare subsidies reduce insurance premiums for low-income households. Eligibility is based on household income and family size. Required documents include latest tax return, national ID, and proof of address."
+  }
+]

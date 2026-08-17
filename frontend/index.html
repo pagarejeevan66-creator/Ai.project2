@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>DPI AI Prototype</title>
+    <style>
+      body { font-family: Arial, sans-serif; max-width: 800px; margin: 2rem auto; }
+      textarea { width: 100%; height: 120px; }
+      pre { background:#f6f8fa; padding:1rem; }
+    </style>
+  </head>
+  <body>
+    <h1>DPI AI Prototype</h1>
+    <p>Simple prototype: login (stub), ask a question, get retrieved passages as an answer with sources.</p>
+
+    <div>
+      <h3>Login (stub)</h3>
+      <input id="username" placeholder="username" value="user1" />
+      <input id="password" placeholder="password" type="password" value="pass" />
+      <button onclick="login()">Login</button>
+    </div>
+
+    <div style="margin-top:1rem;">
+      <h3>Ask a question</h3>
+      <textarea id="query">Who is eligible for child benefits?</textarea>
+      <br />
+      <button onclick="ask()">Ask</button>
+    </div>
+
+    <h3>Answer</h3>
+    <div id="result"></div>
+
+    <script>
+      let token = null;
+      async function login(){
+        const u = document.getElementById('username').value;
+        const p = document.getElementById('password').value;
+        const res = await fetch('/v1/auth/login', {
+          method: 'POST', headers: {'Content-Type':'application/json'},
+          body: JSON.stringify({username:u,password:p})
+        });
+        const j = await res.json();
+        token = j.access_token;
+        alert('Logged in (token saved in memory).');
+      }
+      async function ask(){
+        const q = document.getElementById('query').value;
+        const res = await fetch('/v1/assistant/query', {
+          method:'POST', headers: {
+            'Content-Type':'application/json',
+            'Authorization':'Bearer '+token
+          },
+          body: JSON.stringify({query:q})
+        });
+        const j = await res.json();
+        document.getElementById('result').innerHTML = `<pre>${JSON.stringify(j, null, 2)}</pre>`;
+      }
+    </script>
+  </body>
+</html>
